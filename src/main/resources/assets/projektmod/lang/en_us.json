@@ -1,0 +1,13 @@
+{
+  "itemGroup.projektmod": "Example Mod Tab",
+  "block.projektmod.example_block": "Example Block",
+  "item.projektmod.example_item": "Example Item",
+
+  "projektmod.configuration.title": "projektMod Configs",
+  "projektmod.configuration.section.projektmod.common.toml": "projektMod Configs",
+  "projektmod.configuration.section.projektmod.common.toml.title": "projektMod Configs",
+  "projektmod.configuration.items": "Item List",
+  "projektmod.configuration.logDirtBlock": "Log Dirt Block",
+  "projektmod.configuration.magicNumberIntroduction": "Magic Number Text",
+  "projektmod.configuration.magicNumber": "Magic Number"
+}

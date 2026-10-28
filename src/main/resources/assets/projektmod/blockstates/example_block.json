@@ -1,0 +1,8 @@
+
+{
+  "variants": {
+    "": {
+      "model": "projektmod:block/example_block"
+    }
+  }
+}
