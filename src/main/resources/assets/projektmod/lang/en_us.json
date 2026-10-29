@@ -9,5 +9,7 @@
   "projektmod.configuration.items": "Item List",
   "projektmod.configuration.logDirtBlock": "Log Dirt Block",
   "projektmod.configuration.magicNumberIntroduction": "Magic Number Text",
-  "projektmod.configuration.magicNumber": "Magic Number"
+  "projektmod.configuration.magicNumber": "Magic Number",
+  "projektmod.gui.title": "Hello World",
+  "projektmod.gui.close": "Close"
 }

@@ -78,6 +78,9 @@ neoForge {
 
         // applies to all the run configs above
         configureEach {
+            // Hot reload support with enhanced class redefinition (e.g. DCEVM / JBR)
+            jvmArguments.addAll '-XX:+IgnoreUnrecognizedVMOptions', '-XX:+AllowEnhancedClassRedefinition'
+
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
             // "SCAN": For mods scan.
