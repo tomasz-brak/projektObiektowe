@@ -47,10 +47,11 @@ public class MarketScreen extends Screen {
         main.arrangeElements();
 
         // Sample items TODO to be moved
-        marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.EMERALD)));
-        marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.IRON_AXE)));
-        marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.GOLD_BLOCK)));
-
+        for (int i = 0; i < 50; i++) {
+            marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.EMERALD), 23, 11));
+            marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.IRON_AXE), 21, 34));
+            marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.GOLD_BLOCK), 31, 90));
+        }
         main.visitWidgets(this::addRenderableWidget);
     }
 

@@ -8,7 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jspecify.annotations.NonNull;
 
 public class MarketList extends ObjectSelectionList<MarketList.MarketEntry> {
-  public MarketList(Minecraft minecraft, int width, int height, int y, int itemHeight) {
+    public MarketList(Minecraft minecraft, int width, int height, int y, int itemHeight) {
     super(minecraft, width, height, y, itemHeight);
   }
 
@@ -19,8 +19,13 @@ public class MarketList extends ObjectSelectionList<MarketList.MarketEntry> {
 
   public static class MarketEntry extends ObjectSelectionList.Entry<MarketEntry> {
     private final ItemStack iconStack;
+    public int buyCost;
+    public int sellCost;
 
-    public MarketEntry(ItemStack iconStack){
+    public MarketEntry(ItemStack iconStack, int buyCost, int sellCost){
+      this.buyCost=buyCost;
+      this.sellCost=sellCost;
+
       this.iconStack = iconStack;
     }
 
@@ -50,6 +55,23 @@ public class MarketList extends ObjectSelectionList<MarketList.MarketEntry> {
               yCenter,
               0xFFFFFFFF
       );
+
+      graphics.text(
+              Minecraft.getInstance().font,
+              Component.literal(String.valueOf(this.buyCost)),
+              x1 + this.getWidth() - 32,
+              yCenter,
+              0xFFFFFFFF
+      );
+
+      graphics.text(
+              Minecraft.getInstance().font,
+              Component.literal(String.valueOf(this.sellCost)),
+              x1 + this.getWidth() - 16,
+              yCenter,
+              0xFFFFFFFF
+      );
+
 
       graphics.fill(x1, y2 - 1, x2, y2, 0xFF333333);
     }
