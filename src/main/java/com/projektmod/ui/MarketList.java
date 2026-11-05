@@ -28,26 +28,30 @@ public class MarketList extends ObjectSelectionList<MarketList.MarketEntry> {
     public int buyCost;
     public int sellCost;
 
+    private final StringWidget emptyIcon;
     private final StringWidget nameWidget;
     private final StringWidget buyCostWidget;
     private final StringWidget sellCostWidget;
 
     public MarketEntry(ItemStack iconStack, int buyCost, int sellCost) {
-      super(new Columns(List.of(80, 30, 30)));
+      super(new Columns(List.of(20, 80, 30, 30)));
       this.buyCost = buyCost;
       this.sellCost = sellCost;
       this.iconStack = iconStack;
 
-      Font font = Minecraft.getInstance().font;
+        Font font = Minecraft.getInstance().font;
+
+      this.emptyIcon = new StringWidget(Component.literal(""), font);
+      this.addElement(this.emptyIcon);
 
       this.nameWidget = new StringWidget(iconStack.getHoverName(), font);
       this.addElement(this.nameWidget);
 
-      this.buyCostWidget = new StringWidget(Component.literal(String.valueOf(this.buyCost)), font);
+      this.buyCostWidget = new StringWidget(Component.literal(String.valueOf(this.buyCost)).withColor(0xFF00DD00), font);
 
       this.addElement(this.buyCostWidget);
 
-      this.sellCostWidget = new StringWidget(Component.literal(String.valueOf(this.sellCost)), font);
+      this.sellCostWidget = new StringWidget(Component.literal(String.valueOf(this.sellCost)).withColor(0xFFDD0000), font);
       this.addElement(this.sellCostWidget);
     }
 

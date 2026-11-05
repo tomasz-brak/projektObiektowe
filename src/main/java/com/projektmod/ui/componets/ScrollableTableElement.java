@@ -36,7 +36,6 @@ public abstract class ScrollableTableElement<E extends ObjectSelectionList.Entry
 
             widget.setWidth(colWidth);
 
-            // Vertically center the widget in the row
             int yPos = this.getY() + Math.max(0, (this.getHeight() - widget.getHeight()) / 2);
 
             widget.setX(this.getX() + xOffset);
@@ -44,7 +43,6 @@ public abstract class ScrollableTableElement<E extends ObjectSelectionList.Entry
 
             widget.extractRenderState(graphics, mouseX, mouseY, a);
 
-            // Advance offset for the next column
             xOffset += colWidth + columnSpacing;
         }
     }
@@ -53,7 +51,7 @@ public abstract class ScrollableTableElement<E extends ObjectSelectionList.Entry
         private List<Integer> lengths;
 
         public Columns(List<Integer> lengths) {
-            this.lengths = new ArrayList<>(lengths); // Safe defensive copy
+            this.lengths = new ArrayList<>(lengths);
         }
 
         public List<Integer> getLengths() {

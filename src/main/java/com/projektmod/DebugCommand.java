@@ -3,7 +3,6 @@ package com.projektmod;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.projektmod.ui.ExampleScreen;
 import com.projektmod.ui.MarketScreen;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
