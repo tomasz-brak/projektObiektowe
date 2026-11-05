@@ -7,14 +7,12 @@ import net.minecraft.client.gui.components.ObjectSelectionList;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-Container for the @ref ObjectSelectionList that autoaligns items according to the column definition
- */
-abstract public class ScrollableTableElement<E extends ObjectSelectionList.Entry<E>> extends ObjectSelectionList.Entry<E>{
-    private ArrayList<AbstractWidget> elements = new ArrayList<>();
-    private Columns columns;
+public abstract class ScrollableTableElement<E extends ObjectSelectionList.Entry<E>> extends ObjectSelectionList.Entry<E> {
+    private final List<AbstractWidget> elements = new ArrayList<>();
+    private final Columns columns;
+    private int columnSpacing = 4;
 
-    public ScrollableTableElement(Columns columns){
+    public ScrollableTableElement(Columns columns) {
         this.columns = columns;
     }
 
@@ -22,35 +20,48 @@ abstract public class ScrollableTableElement<E extends ObjectSelectionList.Entry
         this.elements.add(widget);
     }
 
+    public void setColumnSpacing(int spacing) {
+        this.columnSpacing = spacing;
+    }
+
     @Override
     public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
-        int xPlacement = 0;
-        for (int i = 0; i < columns.lengths.size(); i++){
+        int xOffset = 0;
+        List<Integer> lengths = columns.getLengths();
+        int count = Math.min(elements.size(), lengths.size());
+
+        for (int i = 0; i < count; i++) {
             AbstractWidget widget = elements.get(i);
-            int colWidth = columns.lengths.get(i);
+            int colWidth = lengths.get(i);
+
             widget.setWidth(colWidth);
 
-            widget.setX(this.getX() + xPlacement);
-            widget.setY(this.getY());
+            // Vertically center the widget in the row
+            int yPos = this.getY() + Math.max(0, (this.getHeight() - widget.getHeight()) / 2);
+
+            widget.setX(this.getX() + xOffset);
+            widget.setY(yPos);
 
             widget.extractRenderState(graphics, mouseX, mouseY, a);
+
+            // Advance offset for the next column
+            xOffset += colWidth + columnSpacing;
         }
     }
 
-    public static class Columns{
-        public Columns(List<Integer> c){
-            lengths = (ArrayList<Integer>) c;
+    public static class Columns {
+        private List<Integer> lengths;
+
+        public Columns(List<Integer> lengths) {
+            this.lengths = new ArrayList<>(lengths); // Safe defensive copy
         }
 
-        private ArrayList<Integer> lengths = new ArrayList<Integer>();
-
-        public ArrayList<Integer> getLengths() {
+        public List<Integer> getLengths() {
             return lengths;
         }
 
-        public void setLengths(ArrayList<Integer> lengths) {
-            this.lengths = lengths;
+        public void setLengths(List<Integer> lengths) {
+            this.lengths = new ArrayList<>(lengths);
         }
-
     }
 }

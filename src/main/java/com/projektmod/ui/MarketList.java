@@ -33,7 +33,6 @@ public class MarketList extends ObjectSelectionList<MarketList.MarketEntry> {
     private final StringWidget sellCostWidget;
 
     public MarketEntry(ItemStack iconStack, int buyCost, int sellCost) {
-      // Columns: [Item Name: 80px, Buy Price: 30px, Sell Price: 30px]
       super(new Columns(List.of(80, 30, 30)));
       this.buyCost = buyCost;
       this.sellCost = sellCost;
