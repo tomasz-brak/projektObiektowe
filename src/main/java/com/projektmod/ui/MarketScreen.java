@@ -46,7 +46,6 @@ public class MarketScreen extends Screen {
 
         main.arrangeElements();
 
-        // Sample items TODO to be moved
         for (int i = 0; i < 50; i++) {
             marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.EMERALD), 23, 11));
             marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.IRON_AXE), 21, 34));
