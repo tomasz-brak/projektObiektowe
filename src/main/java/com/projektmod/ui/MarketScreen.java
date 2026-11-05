@@ -46,7 +46,7 @@ public class MarketScreen extends Screen {
 
         main.arrangeElements();
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 1000; i++) {
             marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.EMERALD), 23, 11));
             marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.IRON_AXE), 21, 34));
             marketList.addListEntry(new MarketList.MarketEntry(new ItemStack(Items.GOLD_BLOCK), 31, 90));
