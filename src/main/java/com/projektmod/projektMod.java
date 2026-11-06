@@ -1,5 +1,6 @@
 package com.projektmod;
 
+import com.projektmod.ui.ModMenus;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -90,6 +91,7 @@ public class projektMod {
     ITEMS.register(modEventBus);
     // Register the Deferred Register to the mod event bus so tabs get registered
     CREATIVE_MODE_TABS.register(modEventBus);
+    ModMenus.MENUS.register(modEventBus);
 
     // Register ourselves for server and other game events we are interested in.
     // Note that this is necessary if and only if we want *this* class (projektMod)

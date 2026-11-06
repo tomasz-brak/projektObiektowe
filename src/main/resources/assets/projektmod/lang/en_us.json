@@ -11,5 +11,7 @@
   "projektmod.configuration.magicNumberIntroduction": "Magic Number Text",
   "projektmod.configuration.magicNumber": "Magic Number",
   "projektmod.gui.title": "Hello World",
-  "projektmod.gui.close": "Close"
+  "projektmod.gui.close": "Close",
+  "projektmod.gui.market": "Market",
+  "projektmod.gui.market.search": "Search"
 }

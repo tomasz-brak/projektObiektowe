@@ -1,7 +1,10 @@
 package com.projektmod;
 
+import com.projektmod.ui.MarketScreen;
+import com.projektmod.ui.ModMenus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
@@ -15,5 +18,10 @@ public class CommonEventHandler {
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         LOGGER.debug("Registered mod commands");
         DebugCommand.register(event.getDispatcher());
+    }
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(ModMenus.MARKET_MENU.get(), MarketScreen::new);
     }
 }
