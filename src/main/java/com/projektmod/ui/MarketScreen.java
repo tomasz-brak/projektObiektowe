@@ -5,7 +5,9 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import org.jspecify.annotations.NonNull;
@@ -13,13 +15,13 @@ import org.jspecify.annotations.NonNull;
 import static com.projektmod.projektMod.ITEMS;
 import static com.projektmod.projektMod.MODID;
 
-public class MarketScreen extends Screen {
+public class MarketScreen extends AbstractContainerScreen<MarketMenu> {
 
     private final int windowWidth = 320;
     private final int windowHeight = 200;
 
-    public MarketScreen() {
-        super(Component.translatable(MODID + ".gui.market"));
+    public MarketScreen(MarketMenu menu, Inventory playerInventory, Component title) {
+        super(menu, playerInventory, title);
     }
 
     @Override

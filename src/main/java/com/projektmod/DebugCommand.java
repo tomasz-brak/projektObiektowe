@@ -3,11 +3,13 @@ package com.projektmod;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.projektmod.ui.MarketMenu;
 import com.projektmod.ui.MarketScreen;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.SimpleMenuProvider;
 
 public class DebugCommand {
   public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -20,7 +22,9 @@ public class DebugCommand {
     if (context.getSource().getEntity() instanceof ServerPlayer player) {
       player.sendSystemMessage(Component.literal("Screen Opening Heyo! Yo Heyo!"));
       net.minecraft.client.Minecraft.getInstance().execute(() -> {
-        net.minecraft.client.Minecraft.getInstance().setScreenAndShow(new MarketScreen());
+        player.openMenu(new SimpleMenuProvider(
+                (id, inventory, p) -> new MarketMenu(id, inventory), Component.literal("Market Menu")
+        ));
       });
     }
     return 1;
