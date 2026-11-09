@@ -6,10 +6,9 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 public class MarketMenu extends AbstractContainerMenu {
     private final Container container;
@@ -21,13 +20,12 @@ public class MarketMenu extends AbstractContainerMenu {
     public MarketMenu(int containerId, Inventory playerInventory) {
         super(ModMenus.MARKET_MENU.get(), containerId);
         this.container = new SimpleContainer(1);
-        this.addSlot(new Slot(this.container, 0, 80 ,35));
-        this.addStandardInventorySlots(playerInventory, 8, 84);
+        this.addSlot(new Slot(this.container, 0, -80 ,35));
+        this.addStandardInventorySlots(playerInventory, 8, 110); // offset to center
     }
 
-
     @Override
-    public ItemStack quickMoveStack(Player player, int slotIndex) {
+    public @NonNull ItemStack quickMoveStack(@NonNull Player player, int slotIndex) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(slotIndex);
         if (slot != null && slot.hasItem()) {
@@ -52,7 +50,7 @@ public class MarketMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public boolean stillValid(Player player) {
+    public boolean stillValid(@NonNull Player player) {
         return this.container.stillValid(player);
     }
 }

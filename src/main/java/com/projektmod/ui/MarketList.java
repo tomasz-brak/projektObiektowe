@@ -25,15 +25,15 @@ public class MarketList extends ObjectSelectionList<MarketList.MarketEntry> {
 
   public static class MarketEntry extends ScrollableTableElement<MarketEntry> {
     private final ItemStack iconStack;
-    public int buyCost;
-    public int sellCost;
+    public String buyCost;
+    public String sellCost;
 
     private final StringWidget emptyIcon;
     private final StringWidget nameWidget;
     private final StringWidget buyCostWidget;
     private final StringWidget sellCostWidget;
 
-    public MarketEntry(ItemStack iconStack, int buyCost, int sellCost) {
+    public MarketEntry(ItemStack iconStack, String buyCost, String sellCost) {
       super(new Columns(List.of(20, 80, 30, 30)));
       this.buyCost = buyCost;
       this.sellCost = sellCost;
