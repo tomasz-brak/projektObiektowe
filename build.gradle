@@ -85,7 +85,6 @@ neoForge {
         configureEach {
             // Hot reload support with enhanced class redefinition (e.g. DCEVM / JBR)
             jvmArgument("-XX:+AllowEnhancedClassRedefinition")
-            jvmArgument("-XX:-TieredCompilation")
             jvmArgument("-XX:TieredStopAtLevel=1")
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
@@ -141,6 +140,9 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    compileOnly 'org.projectlombok:lombok:1.18.48'
+    annotationProcessor 'org.projectlombok:lombok:1.18.48'
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

@@ -16,7 +16,7 @@ import java.util.List;
 import static java.lang.Math.max;
 
 public class MarketList extends ObjectSelectionList<MarketList.MarketEntry> {
-    private static final ScrollableTableElement.Columns columns = new ScrollableTableElement.Columns(List.of(20, 80, 30, 30, 30));
+    private static final ScrollableTableElement.Columns columns = new ScrollableTableElement.Columns(List.of(20, 140, 30, 30, 30));
 
     public MarketList(Minecraft minecraft, int width, int height, int y, int itemHeight) {
     super(minecraft, max(columns.getAggregateWidth(), width), height, y, itemHeight);

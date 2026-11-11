@@ -2,6 +2,8 @@ package com.projektmod.ui;
 
 import com.projektmod.projektMod;
 import com.projektmod.ui.componets.LargeSlot;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.layouts.LinearLayout;
@@ -14,6 +16,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import org.jspecify.annotations.NonNull;
 
 import java.util.function.Supplier;
@@ -28,7 +31,8 @@ public class MarketScreen extends AbstractContainerScreen<MarketMenu> {
     private final int MAIN_AREA_HEIGHT = 100;
     private static final Identifier SLOT_HIGHLIGHT_BACK = Identifier.withDefaultNamespace("container/slot_highlight_back");
     private static final Identifier SLOT_HIGHLIGHT_FRONT = Identifier.withDefaultNamespace("container/slot_highlight_front");
-    private ItemStack CurrentPicked;
+
+    private MarketList marketList;
 
     public MarketScreen(MarketMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -44,7 +48,6 @@ public class MarketScreen extends AbstractContainerScreen<MarketMenu> {
         super.init();
         this.windowWidth = this.width;
         this.windowHeight = this.height;
-
         LinearLayout main  = LinearLayout.vertical().spacing(LAYOUT_SPACING);
 
         EditBox searchBar = new EditBox(this.font, 0, 0, windowWidth, 20,Component.translatable(MODID + ".gui.market.search"));
@@ -53,8 +56,8 @@ public class MarketScreen extends AbstractContainerScreen<MarketMenu> {
 
         LinearLayout listItemLayout = LinearLayout.horizontal().spacing(LAYOUT_SPACING);
 
-        MarketList marketList = new MarketList(minecraft, 0, MAIN_AREA_HEIGHT, 0, 20);
-        SelectedItemView selectedItemView = new SelectedItemView(0, 0);
+        marketList = new MarketList(minecraft, 0, MAIN_AREA_HEIGHT, 0, 20);
+        SelectedItemView selectedItemView = new SelectedItemView(0, 0, this.menu.getCurrentPicked());
 
         listItemLayout.addChild(selectedItemView);
         int spacerWidth = this.windowWidth - selectedItemView.getWidth() - marketList.getWidth() - LAYOUT_SPACING*2; // TODO: Dumb make this smarter
@@ -116,6 +119,16 @@ public class MarketScreen extends AbstractContainerScreen<MarketMenu> {
             }
         }
         return super.isHovering(left, top, w, h, xm, ym);
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+        if (this.marketList != null && this.marketList.isMouseOver(mouseX, mouseY)) {
+            if (this.marketList.mouseScrolled(mouseX, mouseY, scrollX, scrollY)) {
+                return true;
+            }
+        }
+        return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
     }
 
 }

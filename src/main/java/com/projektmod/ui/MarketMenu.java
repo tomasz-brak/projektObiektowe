@@ -1,6 +1,8 @@
 package com.projektmod.ui;
 
 import com.projektmod.ui.componets.LargeSlot;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -15,15 +17,20 @@ import org.jspecify.annotations.NonNull;
 public class MarketMenu extends AbstractContainerMenu {
     private final Container container;
 
+    @Getter
+    @Setter
+    private SelectedItemView.ItemData currentPicked;
+
     public MarketMenu(int containerId, Inventory playerInventory, RegistryFriendlyByteBuf registryFriendlyByteBuf) {
         this(containerId, playerInventory);
     }
 
     public MarketMenu(int containerId, Inventory playerInventory) {
         super(ModMenus.MARKET_MENU.get(), containerId);
+        currentPicked = new SelectedItemView.ItemData(67, 11, 20, new ItemStack(Blocks.WOOL.orange()));
         this.container = new SimpleContainer(1);
-        this.container.setItem(0, new ItemStack(Blocks.WOOL.orange()));
-        this.addSlot(new LargeSlot(this.container, 0, -78 ,35, 32, 2.0F));
+        this.container.setItem(0, currentPicked.stack());
+        this.addSlot(new LargeSlot(this.container, 0, -20 ,20, 32, 2.0F));
         this.addStandardInventorySlots(playerInventory, 8, 110); // offset to center
     }
 

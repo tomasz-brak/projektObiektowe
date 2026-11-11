@@ -1,19 +1,21 @@
 {
-  "itemGroup.projektmod": "Example Mod Tab",
   "block.projektmod.example_block": "Example Block",
   "item.projektmod.example_item": "Example Item",
-
-  "projektmod.configuration.title": "projektMod Configs",
-  "projektmod.configuration.section.projektmod.common.toml": "projektMod Configs",
-  "projektmod.configuration.section.projektmod.common.toml.title": "projektMod Configs",
+  "itemGroup.projektmod": "Example Mod Tab",
   "projektmod.configuration.items": "Item List",
   "projektmod.configuration.logDirtBlock": "Log Dirt Block",
-  "projektmod.configuration.magicNumberIntroduction": "Magic Number Text",
   "projektmod.configuration.magicNumber": "Magic Number",
-  "projektmod.gui.title": "Hello World",
+  "projektmod.configuration.magicNumberIntroduction": "Magic Number Text",
+  "projektmod.configuration.section.projektmod.common.toml": "projektMod Configs",
+  "projektmod.configuration.section.projektmod.common.toml.title": "projektMod Configs",
+  "projektmod.configuration.title": "projektMod Configs",
   "projektmod.gui.close": "Close",
   "projektmod.gui.market": "Market",
-  "projektmod.gui.market.search": "Search",
   "projektmod.gui.market.buying": "Buying for: %s",
-  "projektmod.gui.market.selling": "Selling for: %s"
+  "projektmod.gui.market.search": "Search",
+  "projektmod.gui.market.selectAmount": "Select Amount...",
+  "projektmod.gui.market.selling": "Selling for: %s",
+  "projektmod.gui.title": "Hello World",
+  "projektmod.gui.market.buy": "Buy",
+  "projektmod.gui.market.sell": "Sell"
 }
