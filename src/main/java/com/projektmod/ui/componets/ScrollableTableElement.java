@@ -10,7 +10,6 @@ import java.util.List;
 public abstract class ScrollableTableElement<E extends ObjectSelectionList.Entry<E>> extends ObjectSelectionList.Entry<E> {
     private final List<AbstractWidget> elements = new ArrayList<>();
     private final Columns columns;
-    private int columnSpacing = 4;
 
     public ScrollableTableElement(Columns columns) {
         this.columns = columns;
@@ -21,12 +20,12 @@ public abstract class ScrollableTableElement<E extends ObjectSelectionList.Entry
     }
 
     public void setColumnSpacing(int spacing) {
-        this.columnSpacing = spacing;
+        this.columns.columnSpacing = spacing;
     }
 
     @Override
     public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
-        int xOffset = 0;
+        int xOffset = this.columns.columnSpacing;
         List<Integer> lengths = columns.getLengths();
         int count = Math.min(elements.size(), lengths.size());
 
@@ -43,12 +42,13 @@ public abstract class ScrollableTableElement<E extends ObjectSelectionList.Entry
 
             widget.extractRenderState(graphics, mouseX, mouseY, a);
 
-            xOffset += colWidth + columnSpacing;
+            xOffset += colWidth + this.columns.columnSpacing;
         }
     }
 
     public static class Columns {
         private List<Integer> lengths;
+        private int columnSpacing = 4;
 
         public Columns(List<Integer> lengths) {
             this.lengths = new ArrayList<>(lengths);
@@ -60,6 +60,10 @@ public abstract class ScrollableTableElement<E extends ObjectSelectionList.Entry
 
         public void setLengths(List<Integer> lengths) {
             this.lengths = new ArrayList<>(lengths);
+        }
+
+        public int getAggregateWidth(){
+            return lengths.stream().reduce(0, (a, b) -> {return a + b + columnSpacing;}) + columnSpacing;
         }
     }
 }

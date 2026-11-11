@@ -13,5 +13,7 @@
   "projektmod.gui.title": "Hello World",
   "projektmod.gui.close": "Close",
   "projektmod.gui.market": "Market",
-  "projektmod.gui.market.search": "Search"
+  "projektmod.gui.market.search": "Search",
+  "projektmod.gui.market.buying": "Buying for: %s",
+  "projektmod.gui.market.selling": "Selling for: %s"
 }
