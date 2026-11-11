@@ -4,7 +4,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.projektmod.ui.MarketMenu;
-import com.projektmod.ui.MarketScreen;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
@@ -13,19 +12,20 @@ import net.minecraft.world.SimpleMenuProvider;
 
 public class DebugCommand {
   public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-    dispatcher.register(
-        Commands.literal("debugMod")
-            .executes(DebugCommand::execute));
+    dispatcher.register(Commands.literal("debugMod").executes(DebugCommand::execute));
   }
 
-  public static int execute(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+  public static int execute(CommandContext<CommandSourceStack> context)
+      throws CommandSyntaxException {
     if (context.getSource().getEntity() instanceof ServerPlayer player) {
       player.sendSystemMessage(Component.literal("Screen Opening Heyo! Yo Heyo!"));
-      net.minecraft.client.Minecraft.getInstance().execute(() -> {
-        player.openMenu(new SimpleMenuProvider(
-                (id, inventory, p) -> new MarketMenu(id, inventory), Component.literal("Market Menu")
-        ));
-      });
+      net.minecraft.client.Minecraft.getInstance()
+          .execute(() -> {
+            player.openMenu(
+                new SimpleMenuProvider(
+                    (id, inventory, p) -> new MarketMenu(id, inventory),
+                    Component.literal("Market Menu")));
+          });
     }
     return 1;
   }
