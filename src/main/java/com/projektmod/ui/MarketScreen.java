@@ -104,6 +104,8 @@ public class MarketScreen extends AbstractContainerScreen<MarketMenu> {
               "90" + randSymbol.get(),
               "11"));
     }
+    main.arrangeElements();
+
     main.visitWidgets(this::addRenderableWidget);
   }
 

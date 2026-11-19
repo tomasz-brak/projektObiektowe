@@ -21,5 +21,11 @@ https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
 
 Additional Resources: 
 ==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+
+Community Documentation: https://docs.neoforged.net/  NeoForged Discord: https://discord.neoforged.net/
+
+# design
+
+jedno okno z jak crafting
+
+z lewej jeden slot ktory dziala jak "koszyk"

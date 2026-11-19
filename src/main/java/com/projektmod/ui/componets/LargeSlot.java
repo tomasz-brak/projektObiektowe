@@ -25,6 +25,16 @@ public class LargeSlot extends Slot {
     return this.scale;
   }
 
+  @Override
+  public int getMaxStackSize() {
+    return this.container.getMaxStackSize();
+  }
+
+  @Override
+  public int getMaxStackSize(ItemStack stack) {
+    return this.container.getMaxStackSize(stack);
+  }
+
   public static void render(GuiGraphicsExtractor graphicsExtractor, LargeSlot slot) {
     ItemStack stack = slot.getItem();
     if (stack.isEmpty()) return;
