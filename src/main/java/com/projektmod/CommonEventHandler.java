@@ -3,6 +3,7 @@ package com.projektmod;
 import static com.projektmod.projektMod.LOGGER;
 import static com.projektmod.projektMod.MODID;
 
+import com.projektmod.chart.PriceChartCommand;
 import com.projektmod.ui.MarketScreen;
 import com.projektmod.ui.ModMenus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -17,6 +18,7 @@ public class CommonEventHandler {
   public static void onRegisterCommands(RegisterCommandsEvent event) {
     LOGGER.debug("Registered mod commands");
     DebugCommand.register(event.getDispatcher());
+    PriceChartCommand.register(event.getDispatcher());
   }
 
   @SubscribeEvent
