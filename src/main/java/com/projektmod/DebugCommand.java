@@ -1,26 +1,32 @@
 package com.projektmod;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.projektmod.ui.ExampleScreen;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.projektmod.ui.MarketMenu;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.SimpleMenuProvider;
 
 public class DebugCommand {
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(
-                Commands.literal("debugMod")
-                        .executes(context -> {
-                            if (context.getSource().getEntity() instanceof ServerPlayer player) {
-                                player.sendSystemMessage(Component.literal("Screen Opening"));
-                                net.minecraft.client.Minecraft.getInstance().execute(() -> {
-                                    net.minecraft.client.Minecraft.getInstance().setScreenAndShow(new ExampleScreen());
-                                });
+  public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+    dispatcher.register(Commands.literal("debugMod").executes(DebugCommand::execute));
+  }
 
-                            }
-                            return 1;
-                        })
-        );
+  public static int execute(CommandContext<CommandSourceStack> context)
+      throws CommandSyntaxException {
+    if (context.getSource().getEntity() instanceof ServerPlayer player) {
+      player.sendSystemMessage(Component.literal("Screen Opening Heyo! Yo Heyo!"));
+      net.minecraft.client.Minecraft.getInstance()
+          .execute(() -> {
+            player.openMenu(
+                new SimpleMenuProvider(
+                    (id, inventory, p) -> new MarketMenu(id, inventory),
+                    Component.literal("Market Menu")));
+          });
     }
+    return 1;
+  }
 }
