@@ -1,11 +1,11 @@
 package com.projektmod.ui;
 
+import com.projektmod.ui.componets.LargeContainer;
 import com.projektmod.ui.componets.LargeSlot;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -27,7 +27,8 @@ public class MarketMenu extends AbstractContainerMenu {
   public MarketMenu(int containerId, Inventory playerInventory) {
     super(ModMenus.MARKET_MENU.get(), containerId);
     currentPicked = new SelectedItemView.ItemData(67, 11, 20, new ItemStack(Blocks.WOOL.orange()));
-    this.container = new SimpleContainer(1);
+    this.container = new LargeContainer(1, 100);
+
     this.container.setItem(0, currentPicked.stack());
     this.addSlot(new LargeSlot(this.container, 0, -20, 20, 32, 2.0F));
     this.addStandardInventorySlots(playerInventory, 8, 110); // offset to center
